@@ -26,11 +26,11 @@ allprojects {
     }
     configurations.all {
         resolutionStrategy {
+            // Kotlin standard library sync
             force "org.jetbrains.kotlin:kotlin-stdlib:$kotlinVersion"
-            force "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlinVersion"
-            force "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlinVersion"
-            force "org.jetbrains.kotlin:kotlin-stdlib-common:$kotlinVersion"
             force "org.jetbrains.kotlin:kotlin-reflect:$kotlinVersion"
+            
+            // AndroidX libraries
             force "androidx.core:core:1.13.1"
             force "androidx.core:core-ktx:1.13.1"
             force "androidx.fragment:fragment:1.7.1"

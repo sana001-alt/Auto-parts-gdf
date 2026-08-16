@@ -52,6 +52,14 @@ jobs:
             keytool -genkey -v -keystore debug.keystore -storepass android -alias androiddebugkey -keypass android -keyalg RSA -keysize 2048 -validity 10000 -dname "CN=Android Debug,O=Android,C=US"
           fi
 
+      - name: Create JS Bundle Manually (To bypass Metro crash)
+        env:
+          NODE_OPTIONS: "--max-old-space-size=4096"
+        run: |
+          cd react-native-app
+          mkdir -p android/app/src/main/assets
+          npx react-native bundle --platform android --dev false --entry-file index.js --bundle-output android/app/src/main/assets/index.android.bundle --assets-dest android/app/src/main/res/ || true
+
       - name: Build React Native Android Release APK & AAB
         env:
           NODE_OPTIONS: "--max-old-space-size=4096"

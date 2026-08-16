@@ -1,4 +1,4 @@
-Name: Build React Native Android APK
+name: Build React Native Android APK
 
 on:
   push:
@@ -52,7 +52,7 @@ jobs:
             keytool -genkey -v -keystore debug.keystore -storepass android -alias androiddebugkey -keypass android -keyalg RSA -keysize 2048 -validity 10000 -dname "CN=Android Debug,O=Android,C=US"
           fi
 
-      - name: Build React Native Android Release APK
+      - name: Build React Native Android Release APK & AAB
         env:
           NODE_OPTIONS: "--max-old-space-size=4096"
         run: |

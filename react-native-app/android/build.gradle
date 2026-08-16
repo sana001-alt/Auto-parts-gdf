@@ -1,4 +1,4 @@
-buildscript {
+uibuildscript {
     ext {
         buildToolsVersion = "34.0.0"
         minSdkVersion = 24
@@ -39,3 +39,17 @@ allprojects {
         }
     }
 }
+android {
+    // ... unga existing configs
+
+    packagingOptions {
+        pickFirst '**/libglog.so'
+        pickFirst '**/libc++_shared.so'
+    }
+}
+
+// Duplicate assets crash fix for React Native
+project.ext.react = [
+    enableHermes: true,
+    extraPackagerArgs: ["--max-workers=2"]
+]
